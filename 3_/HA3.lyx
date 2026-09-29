@@ -1,0 +1,1679 @@
+#LyX 2.5 created this file. For more info see https://www.lyx.org/
+\lyxformat 643
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+
+
+\usepackage{a4wide}
+\usepackage{amsfonts}
+% For including images
+\usepackage{xcolor}% For a colorful presentation
+\usepackage{listings}% For presenting code
+
+
+
+% Definition of a style for code, matter of taste
+\lstdefinestyle{mystyle}{
+  language=Python,
+  basicstyle=\ttfamily\footnotesize,
+  backgroundcolor=\color[HTML]{F7F7F7},
+  rulecolor=\color[HTML]{EEEEEE},
+  identifierstyle=\color[HTML]{24292E},
+  emphstyle=\color[HTML]{005CC5},
+  keywordstyle=\color[HTML]{D73A49},
+  commentstyle=\color[HTML]{6A737D},
+  stringstyle=\color[HTML]{032F62},
+  emph={@property,self,range,True,False},
+  morekeywords={super,with,as,lambda},
+  literate=%
+    {+}{{{\color[HTML]{D73A49}+}}}1
+    {-}{{{\color[HTML]{D73A49}-}}}1
+    {*}{{{\color[HTML]{D73A49}*}}}1
+    {/}{{{\color[HTML]{D73A49}/}}}1
+    {=}{{{\color[HTML]{D73A49}=}}}1
+    {/=}{{{\color[HTML]{D73A49}=}}}1,
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  keepspaces=true,
+  numbers=none,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  tabsize=4,
+  frame=single,
+}
+\lstset{style=mystyle}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children no
+\language english
+\language_package none
+\inputencoding utf8
+\fontencoding default
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_roman_osf false
+\font_sans_osf false
+\font_typewriter_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref true
+\pdf_bookmarks false
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle false
+\papersize a4
+\use_geometry false
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 0
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 0
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\crossref_package prettyref
+\use_formatted_ref 0
+\use_minted 0
+\use_lineno 0
+\backgroundcolor none
+\fontcolor none
+\notefontcolor lightgray
+\boxbgcolor red
+\table_border_color default
+\table_odd_row_color default
+\table_even_row_color default
+\table_alt_row_colors_start 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tablestyle default
+\tracking_changes false
+\output_changes false
+\change_bars false
+\postpone_fragile_content true
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\docbook_table_output 0
+\docbook_mathml_prefix 1
+\docbook_mathml_version 0
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Machine Learning A (2026–2027)
+\begin_inset Newline newline
+\end_inset
+
+ Home Assignment 3
+\end_layout
+
+\begin_layout Author
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+color{red}
+\end_layout
+
+\end_inset
+
+Hannibal von Scholten - GMJ118
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+% Please leave the table of contents as is,
+ for the ease of navigation for TAs.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Optimal Classification (16 points)
+\end_layout
+
+\begin_layout Subsection*
+Question 1
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+addcontentsline{toc}{subsection}{Question 1}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I find the optimal deterministic classification rule by applying Bayes-optimal rule under 0-1 loss.
+ This means choosing the value of 
+\begin_inset Formula $\hat{y}$
+\end_inset
+
+ which maximizes the probability of 
+\begin_inset Formula $\hat{y}=y$
+\end_inset
+
+ given the input variable 
+\begin_inset Formula $x$
+\end_inset
+
+:
+ 
+\begin_inset Formula 
+\[
+\hat{y}\left(x\right)=\arg\max_{y\in\{0,1\}}P\left(Y=y\mid X=x\right).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Applying this yields:
+ 
+\begin_inset Formula 
+\[
+\hat{y}=0\quad\text{for all }x\in\left\{ 0,1\right\} .
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Assuming that 
+\begin_inset Formula $P\left(X=0\right)=P\left(X=1\right)=0.5$
+\end_inset
+
+,
+ i get the expected 0-1 loss:
+ 
+\begin_inset Formula 
+\begin{align*}
+\mathcal{R}_{p}\left(\hat{y}\left(X\right)\right) & =\mathbb{E}_{X}\left[P\left(Y\neq\hat{y}\left(X)\right)\mid X\right)\right],\\
+ & =P\left(X=0\right)P\left(Y\neq\hat{y}\left(0)\right)\right)+P\left(X=1\right)P\left(Y\neq\hat{y}\left(1)\right)\right),\\
+ & =0.5\cdot P\left(Y=1\mid X=0\right)+0.5\cdot P\left(Y=1\mid X=1\right),\\
+ & =0.5\cdot0+0.5\cdot0.2,\\
+ & =0.1.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Question 2
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+addcontentsline{toc}{subsection}{Question 2}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+With the new probabilistic classifier:
+ 
+\begin_inset Formula 
+\[
+\hat{y}=\begin{cases}
+0 & \text{for }x=0\\
+P\left(\hat{y}=0\right)=0.8\text{ and }P\left(\hat{y}=1\right)=0.2 & \text{for }x=1
+\end{cases},
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+the expected 0-1 loss is:
+ 
+\begin_inset Formula 
+\begin{align*}
+\mathcal{R}_{p}\left(\hat{y}\left(X\right)\right) & =P\left(X=0\right)P\left(\hat{y}\neq Y\mid X=0\right)+P\left(X=1\right)P\left(\hat{y}\neq Y\mid X=1\right),\\
+ & =0.5P\left(Y=1\mid X=0\right)+\\
+ & \quad0.5\left(P\left(\hat{y}=0\mid X=1\right)P\left(Y=1\mid X=1\right)+P\left(\hat{y}=1\mid X=1\right)P\left(Y=0\mid X=1\right)\right),\\
+ & =0.5\cdot0+0.5\left(0.8\cdot0.2+0.2\cdot0.8\right),\\
+ & =0.16.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Question 3
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+addcontentsline{toc}{subsection}{Question 3}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Given 
+\begin_inset Formula $X=0$
+\end_inset
+
+,
+ suppose i choose 
+\begin_inset Formula $Y=0$
+\end_inset
+
+ with probability 
+\begin_inset Formula $a$
+\end_inset
+
+,
+ and 
+\begin_inset Formula $Y=1$
+\end_inset
+
+ with probability 
+\begin_inset Formula $1-a$
+\end_inset
+
+.
+ Then the probability that i choose 
+\begin_inset Formula $Y=\hat{y}$
+\end_inset
+
+ correctly,
+ is given by:
+ 
+\begin_inset Formula 
+\[
+P\left(Y=\hat{y}\mid X=0\right)=a\cdot P\left(Y=0\mid X=0\right)+\left(1-a\right)P\left(Y=1\mid X=0\right).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The expected 0-1 loss is then given by:
+ 
+\begin_inset Formula 
+\begin{align*}
+\mathcal{R}_{p}\left(\hat{y}\left(a\right)\right) & =1-P\left(Y=\hat{y}\mid X=0\right),\\
+ & =1-\left(a\cdot P\left(Y=0\mid X=0\right)+\left(1-a\right)P\left(Y=1\mid X=0\right)\right).
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I want to minimize the expected 0-1 loss:
+ 
+\begin_inset Formula 
+\[
+\min_{a\in\left[0,1\right]}\mathcal{R}_{p}\left(\hat{y}\left(a\right)\right).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since 
+\begin_inset Formula $\mathcal{R}_{p}\left(\hat{y}\left(a\right)\right)$
+\end_inset
+
+ is linear,
+ a value of 
+\begin_inset Formula $a$
+\end_inset
+
+ that minimizes 
+\begin_inset Formula $\mathcal{R}_{p}\left(\hat{y}\left(a\right)\right)$
+\end_inset
+
+ will always be a boundary case,
+ either 
+\begin_inset Formula $a^{*}=0$
+\end_inset
+
+ or 
+\begin_inset Formula $a^{*}=1$
+\end_inset
+
+:
+ 
+\begin_inset Formula $\mathcal{R}_{p}\left(\hat{y}\left(a^{*}\right)\right)\leq\mathcal{R}_{p}\left(\hat{y}\left(a\right)\right)$
+\end_inset
+
+ for all 
+\begin_inset Formula $a\in\left[0,1\right]$
+\end_inset
+
+.
+ Therefore,
+ the deterministic classification from question 1,
+ where 
+\begin_inset Formula $y=\arg\max_{y\in\{0,1\}}P\left(Y=y\mid X=x\right)$
+\end_inset
+
+,
+ is a weakly optimal classifier when using the 0-1 loss as a measure for performance.
+\end_layout
+
+\begin_layout Section
+Logistic Regression (50 points)
+\end_layout
+
+\begin_layout Subsection
+Cross-entropy error measure (16 points)
+\end_layout
+
+\begin_layout Subsubsection
+Rewriting negative logarithmic likelihood as cross-entropy
+\end_layout
+
+\begin_layout Standard
+In the case where 
+\begin_inset Formula $Y\in\left\{ -1,1\right\} ,$
+\end_inset
+
+and 
+\begin_inset Formula $h\left(\boldsymbol{x}\right)=P\left(Y=1\mid X=\boldsymbol{x}\right),$
+\end_inset
+
+i can write the data generation process:
+ 
+\begin_inset Formula 
+\begin{align*}
+P\left(Y=y\mid X=\boldsymbol{x}\right) & =\begin{cases}
+h(\boldsymbol{x}) & \text{for }y=1\\
+1-h\left(\boldsymbol{x}\right) & \text{for }y=-1
+\end{cases},\\
+ & =\mathbf{1}_{\left\{ y=1\right\} }h(\boldsymbol{x})+\mathbf{1}_{\left\{ y=-1\right\} }\left(1-h(\boldsymbol{x})\right).
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+From above i can derive the negative likelihood function:
+ 
+\begin_inset Formula 
+\[
+\mathcal{L}\left(\boldsymbol{w}\right)=\frac{1}{N}\prod^{N}_{n=1}\left[-P\left(Y_{n}=y_{n}\mid X_{n}=\boldsymbol{x_{n}};\boldsymbol{w}\right)\right].
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The corresponding negative log-likelihood function is the:
+ 
+\begin_inset Formula 
+\[
+\log\left(\mathcal{L}\left(\boldsymbol{w}\right)\right)=\frac{1}{N}\sum^{N}_{n=1}\log\left(\frac{1}{P\left(Y_{n}=y_{n}\mid X_{n}=\boldsymbol{x}_{n};\boldsymbol{w}\right)}\right).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Substituting in 
+\begin_inset Formula $P\left(Y=y\mid X=\boldsymbol{x}\right)=\mathbf{1}_{\left\{ y=1\right\} }h(\boldsymbol{x})+\mathbf{1}_{\left\{ y=-1\right\} }\left(1-h(\boldsymbol{x})\right)$
+\end_inset
+
+,
+ yields:
+ 
+\begin_inset Formula 
+\[
+\log\left(\mathcal{L}\left(\boldsymbol{w}\right)\right)=\frac{1}{N}\sum^{N}_{n=1}\left[\mathbf{1}_{\left\{ y=1\right\} }\log\left(\frac{1}{h(\boldsymbol{x_{n};\boldsymbol{w}})}\right)+\mathbf{1}_{\left\{ y=-1\right\} }\log\left(\frac{1}{1-h(\boldsymbol{x_{n}};\boldsymbol{w})}\right)\right],
+\]
+
+\end_inset
+
+which is what i wanted to show.
+ From now on i define:
+ 
+\begin_inset Formula 
+\[
+\mathcal{L}\left(\boldsymbol{w}\right)=\frac{1}{N}\sum^{N}_{n=1}\left[\mathbf{1}_{\left\{ y=1\right\} }\log\left(\frac{1}{h(\boldsymbol{x_{n};\boldsymbol{w}})}\right)+\mathbf{1}_{\left\{ y=-1\right\} }\log\left(\frac{1}{1-h(\boldsymbol{x_{n}};\boldsymbol{w})}\right)\right].\tag{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Cross-entropy and logistic regression
+\end_layout
+
+\begin_layout Standard
+To show that:
+ 
+\begin_inset Formula 
+\begin{align*}
+\mathcal{L}\left(\boldsymbol{w}\right) & =\frac{1}{N}\sum^{N}_{n=1}\left[\mathbf{1}_{\left\{ y=1\right\} }\log\left(\frac{1}{h(\boldsymbol{x_{n};\boldsymbol{w}})}\right)+\mathbf{1}_{\left\{ y=-1\right\} }\log\left(\frac{1}{1-h(\boldsymbol{x_{n}};\boldsymbol{w})}\right)\right],\tag{2}\\
+ & =\frac{1}{N}\sum^{N}_{n=1}\log\left(1+e^{-y_{n}\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}_{n}}\right),\tag{1}
+\end{align*}
+
+\end_inset
+
+i use,
+ that the sigmoid function has the following property:
+ 
+\begin_inset Formula 
+\begin{align*}
+P\left(Y=y\mid X=\boldsymbol{x};\boldsymbol{w}\right) & =\theta\left(y\boldsymbol{w}^{T}\boldsymbol{x}\right),\\
+ & =\begin{cases}
+\theta\left(\boldsymbol{w}^{T}\boldsymbol{x}\right) & \text{for }y=1\\
+1-\theta\left(\boldsymbol{w}^{T}\boldsymbol{x}\right) & \text{for }y=-1
+\end{cases},
+\end{align*}
+
+\end_inset
+
+where 
+\begin_inset Formula 
+\[
+\theta\left(z\right)=\frac{1}{1+e^{-z}}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This means that:
+ 
+\begin_inset Formula 
+\begin{align*}
+-\log\left(\theta\left(z\right)\right) & =\log\left(1+e^{-z}\right),\\
+\Rightarrow-\log\left(\theta\left(y\boldsymbol{w}^{T}\boldsymbol{x}\right)\right) & =\log\left(1+e^{-y\boldsymbol{w}^{T}\boldsymbol{x}}\right).
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Plugging the above expression into equation (1) from the assignment,
+ and using that 
+\begin_inset Formula $P\left(Y=y\mid X=\boldsymbol{x};\boldsymbol{w}\right)=\theta\left(y\boldsymbol{w}^{T}\boldsymbol{x}\right)$
+\end_inset
+
+,
+ yields:
+ 
+\begin_inset Formula 
+\begin{align*}
+\mathcal{L}\left(\boldsymbol{w}\right) & =\frac{1}{N}\sum^{N}_{n=1}-\log\left(\theta\left(y_{n}\boldsymbol{w}^{T}\boldsymbol{x}_{n}\right)\right),\\
+ & =\frac{1}{N}\sum^{N}_{n=1}-\log\left(P\left(Y=y_{n}\mid X=\boldsymbol{x}_{n};\boldsymbol{w}\right)\right),\\
+ & =\frac{1}{N}\sum^{N}_{n=1}\left[\mathbf{1}_{\left\{ y=1\right\} }\log\left(\frac{1}{h(\boldsymbol{x_{n};\boldsymbol{w}})}\right)+\mathbf{1}_{\left\{ y=-1\right\} }\log\left(\frac{1}{1-h(\boldsymbol{x_{n}};\boldsymbol{w})}\right)\right],
+\end{align*}
+
+\end_inset
+
+which is what i wanted to show.
+\end_layout
+
+\begin_layout Subsection
+Logistic regression loss gradient (24 points)
+\end_layout
+
+\begin_layout Subsubsection
+Gradient for 
+\begin_inset Formula $-1$
+\end_inset
+
+ and 
+\begin_inset Formula $1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Consider the negative log-likelihood function (eq.
+ (1)):
+ 
+\begin_inset Formula 
+\[
+\mathcal{L}\left(\boldsymbol{w}\right)=\frac{1}{N}\sum^{N}_{n=1}\log\left(1+e^{-y_{n}\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}_{n}}\right).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Using the chain rule,
+ the gradient of the negative log-likelihood can be derived:
+ 
+\begin_inset Formula 
+\begin{align*}
+\nabla\mathcal{L}\left(\boldsymbol{w}\right) & =\frac{\partial\mathcal{L}(\mathbf{w})}{\partial\boldsymbol{w}}\\
+ & =\frac{1}{N}\sum^{N}_{n=1}\left(\begin{array}{c}
+\frac{\partial}{\partial w_{1}}\log\left(1+e^{-y_{n}\boldsymbol{w}^{\mathrm{T}}x_{n}}\right)\\
+\frac{\partial}{\partial w_{2}}\log\left(1+e^{-y_{n}\boldsymbol{w}^{\mathrm{T}}x_{n}}\right)\\
+\vdots\\
+\frac{\partial}{\partial w_{d}}\log\left(1+e^{-y_{n}\boldsymbol{w}^{\mathrm{T}}x_{n}}\right)
+\end{array}\right),\\
+ & =\frac{1}{N}\sum^{N}_{n=1}\left(\begin{array}{c}
+-y_{n}x_{n1}\frac{e^{-y_{n}\boldsymbol{w}^{\mathrm{T}}x_{n1}}}{1+e^{-y_{n}\boldsymbol{w}^{\mathrm{T}}x_{n1}}}\\
+-y_{n}x_{n2}\frac{e^{-y_{n}\boldsymbol{w}^{\mathrm{T}}x_{n2}}}{1+e^{-y_{n}\boldsymbol{w}^{\mathrm{T}}x_{n2}}}\\
+\vdots\\
+-y_{n}x_{n2}\frac{e^{-y_{n}\boldsymbol{w}^{\mathrm{T}}x_{nd}}}{1+e^{-y_{n}\boldsymbol{w}^{\mathrm{T}}x_{nd}}}
+\end{array}\right),\\
+ & =\frac{1}{N}\sum^{N}_{n=1}-y_{n}\boldsymbol{x}_{n}\frac{e^{-y_{n}\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}_{n}}}{1+e^{-y_{n}\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}_{n}}},\\
+ & =\frac{1}{N}\sum^{N}_{n=1}-y_{n}\boldsymbol{x}_{n}\frac{e^{-y_{n}\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}_{n}}e^{y_{n}\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}_{n}}}{\left(1+e^{-y_{n}\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}_{n}}\right)e^{1y\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}_{n}}},\\
+ & =\frac{1}{N}\sum^{N}_{n=1}-y_{n}\boldsymbol{x}_{n}\frac{1}{1+e^{y_{n}\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}_{n}}},\\
+ & =\frac{1}{N}\sum^{N}_{n=1}-y_{n}\boldsymbol{x}_{n}\theta\left(-y_{n}\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}_{n}\right).
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Gradient for 
+\begin_inset Formula $0$
+\end_inset
+
+ and 
+\begin_inset Formula $1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When 
+\begin_inset Formula $Y\in\left\{ 0,1\right\} ,P\left(Y=y\mid X=\boldsymbol{x};\boldsymbol{w}\right)$
+\end_inset
+
+ can be written:
+ 
+\begin_inset Formula 
+\begin{align*}
+P\left(Y=y\mid X=\boldsymbol{x};\boldsymbol{w}\right) & =\theta\left(\boldsymbol{w}^{T}\boldsymbol{x}\right)^{y}\left(1-\theta\left(\boldsymbol{w}^{T}\boldsymbol{x}\right)\right)^{1-y},\\
+ & =\begin{cases}
+\theta\left(\boldsymbol{w}^{T}\boldsymbol{x}\right) & \text{for }y=1\\
+1-\theta\left(\boldsymbol{w}^{T}\boldsymbol{x}\right) & \text{for }y=0
+\end{cases}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Using the above expression,
+ the negative log-likelihood function can be written:
+ 
+\begin_inset Formula 
+\begin{align*}
+\mathcal{L}\left(\boldsymbol{w}\right) & =-\frac{1}{N}\sum^{N}_{n=1}\log\left(P\left(Y=y_{n}\mid X=\boldsymbol{x_{n}};\boldsymbol{w}\right)\right),\\
+ & =-\frac{1}{N}\sum^{N}_{n=1}\log\left(\theta\left(\boldsymbol{w}^{T}\boldsymbol{x}_{n}\right)^{y_{n}}\left(1-\theta\left(\boldsymbol{w}^{T}\boldsymbol{x}_{n}\right)\right)^{1-y_{n}}\right),\\
+ & =-\frac{1}{N}\sum^{N}_{n=1}y_{n}\log\left(\theta\left(\boldsymbol{w}^{T}\boldsymbol{x}_{n}\right)\right)+\left(1-y_{n}\right)\log\left(1-\theta\left(\boldsymbol{w}^{T}\boldsymbol{x}_{n}\right)\right),\\
+ & =-\frac{1}{N}\sum^{N}_{n=1}\left(y_{n}\log\left(\frac{1}{1+e^{-\boldsymbol{w}^{T}\boldsymbol{x}_{n}}}\right)+\left(1-y_{n}\right)\log\left(1-\frac{1}{1+e^{-\boldsymbol{w}^{T}\boldsymbol{x}_{n}}}\right)\right),\\
+ & =-\frac{1}{N}\sum^{N}_{n=1}\left(-y_{n}\log\left(1+e^{-\boldsymbol{w}^{T}\boldsymbol{x}_{n}}\right)+\left(1-y_{n}\right)\log\left(\frac{e^{-\boldsymbol{w}^{T}\boldsymbol{x}_{n}}}{1+e^{-\boldsymbol{w}^{T}\boldsymbol{x}_{n}}}\right)\right),\\
+ & =-\frac{1}{N}\sum^{N}_{n=1}\left(-y_{n}\log\left(1+e^{-\boldsymbol{w}^{T}\boldsymbol{x}_{n}}\right)+\left(1-y_{n}\right)\log\left(\frac{1}{1+e^{\boldsymbol{w}^{T}\boldsymbol{x}_{n}}}\right)\right)\\
+ & =-\frac{1}{N}\sum^{N}_{n=1}\left(-y_{n}\log\left(1+e^{-\boldsymbol{w}^{T}\boldsymbol{x}_{n}}\right)-\left(1-y_{n}\right)\log\left(1+e^{\boldsymbol{w}^{T}\boldsymbol{x}_{n}}\right)\right),\\
+ & =\frac{1}{N}\sum^{N}_{n=1}\left(y_{n}\log\left(1+e^{-\boldsymbol{w}^{T}\boldsymbol{x}_{n}}\right)+\left(1-y_{n}\right)\log\left(1+e^{\boldsymbol{w}^{T}\boldsymbol{x}_{n}}\right)\right).
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The gradient can then be derived:
+ 
+\begin_inset Formula 
+\begin{align*}
+\nabla\mathcal{L}\left(\boldsymbol{w}\right) & =\frac{\partial\mathcal{L}(\mathbf{w})}{\partial\boldsymbol{w}}\\
+ & =\frac{1}{N}\sum^{N}_{n=1}\left(\begin{array}{c}
+\frac{\partial}{\partial w_{1}}\left(y_{n}\log\left(1+e^{-\boldsymbol{w}^{T}x_{n}}\right)+\left(1-y_{n}\right)\log\left(1+e^{\boldsymbol{w}^{T}x_{n}}\right)\right)\\
+\frac{\partial}{\partial w_{2}}\left(y_{n}\log\left(1+e^{-\boldsymbol{w}^{T}x_{n}}\right)+\left(1-y_{n}\right)\log\left(1+e^{\boldsymbol{w}^{T}x_{n}}\right)\right)\\
+\vdots\\
+\frac{\partial}{\partial w_{d}}\left(y_{n}\log\left(1+e^{-\boldsymbol{w}^{T}x_{n}}\right)+\left(1-y_{n}\right)\log\left(1+e^{\boldsymbol{w}^{T}x_{n}}\right)\right)
+\end{array}\right),\\
+ & =\frac{1}{N}\sum^{N}_{n=1}\left(\begin{array}{c}
+\nabla l_{1}\\
+\nabla l_{2}\\
+\vdots\\
+\nabla l_{d}
+\end{array}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For the sake of simplicity,
+ i will derive 
+\begin_inset Formula $\nabla l_{i}$
+\end_inset
+
+,
+ and then generalize to 
+\begin_inset Formula $\nabla\mathcal{L}\left(\boldsymbol{w}\right)=\frac{1}{N}\sum^{N}_{n=1}\nabla\boldsymbol{l}$
+\end_inset
+
+:
+ 
+\begin_inset Formula 
+\begin{align*}
+\nabla l_{i} & =\frac{\partial}{\partial w_{i}}\left(y_{n}\log\left(1+e^{-\boldsymbol{w}^{T}x_{ni}}\right)+\left(1-y_{n}\right)\log\left(1+e^{\boldsymbol{w}^{T}x_{ni}}\right)\right),\\
+ & =-x_{ni}y_{n}\frac{e^{-\boldsymbol{w}^{T}x_{ni}}}{1+e^{-\boldsymbol{w}^{T}x_{ni}}}+x_{ni}\left(1-y_{n}\right)\frac{e^{\boldsymbol{w}^{T}x_{ni}}}{1+e^{\boldsymbol{w}^{T}x_{ni}}},\\
+ & =-x_{ni}y_{n}\left(1-\frac{1}{1+e^{\boldsymbol{-w}^{T}x_{ni}}}\right)+x_{ni}\left(1-y_{n}\right)\frac{1}{1+e^{\boldsymbol{-w}^{T}x_{ni}}},\\
+ & =-x_{ni}\left(y_{n}-y_{n}\frac{1}{1+e^{\boldsymbol{-w}^{T}x_{ni}}}-\frac{1}{1+e^{\boldsymbol{-w}^{T}x_{ni}}}+y_{n}\frac{1}{1+e^{\boldsymbol{-w}^{T}x_{ni}}}\right),\\
+ & =-x_{ni}\left(y_{n}-\frac{1}{1+e^{\boldsymbol{-w}^{T}x_{ni}}}\right).
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Plugging the above expression into 
+\begin_inset Formula $\nabla\mathcal{L}\left(\boldsymbol{w}\right)$
+\end_inset
+
+,
+ yields:
+ 
+\begin_inset Formula 
+\begin{align*}
+\nabla\mathcal{L}\left(\boldsymbol{w}\right) & =\frac{1}{N}\sum^{N}_{n=1}\left(\begin{array}{c}
+-x_{n1}\left(y_{n}-\frac{1}{1+e^{\boldsymbol{-w}^{T}x_{n1}}}\right)\\
+-x_{n2}\left(y_{n}-\frac{1}{1+e^{\boldsymbol{-w}^{T}x_{n2}}}\right)\\
+\vdots\\
+-x_{nd}\left(y_{n}-\frac{1}{1+e^{\boldsymbol{-w}^{T}x_{nd}}}\right)
+\end{array}\right),\\
+ & =-\frac{1}{N}\sum^{N}_{n=1}\left(\begin{array}{c}
+\left(y_{n}-\theta\left(\boldsymbol{w}^{T}x_{n1}\right)\right)x_{n1}\\
+\left(y_{n}-\theta\left(\boldsymbol{w}^{T}x_{n2}\right)\right)x_{n2}\\
+\vdots\\
+\left(y_{n}-\theta\left(\boldsymbol{w}^{T}x_{nd}\right)\right)x_{nd}
+\end{array}\right),\\
+ & =-\frac{1}{N}\sum^{N}_{n=1}\left(y_{n}-\theta\left(\boldsymbol{w}^{T}\boldsymbol{x}_{n}\right)\right)\boldsymbol{x}_{n}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Influence of misclassified examples
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+For 
+\begin_inset Formula $\boldsymbol{Y\in\left\{ 0,1\right\} }$
+\end_inset
+
+
+\series default
+,
+ the gradient contribution of one observation is given by:
+\begin_inset Formula 
+\[
+\nabla l_{n=i}=-\frac{1}{N}\left(y_{i}-\theta\left(\boldsymbol{w}^{T}\boldsymbol{x}_{i}\right)\right)\boldsymbol{x}_{i}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I start by defining 
+\begin_inset Formula $m_{i}=y_{i}-\theta\left(\boldsymbol{w}^{T}\boldsymbol{x}_{i}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The sample can be misclassified in two ways:
+ If the model predicts 
+\begin_inset Formula $\hat{y}_{i}=0$
+\end_inset
+
+,
+ when 
+\begin_inset Formula $y_{i}=1$
+\end_inset
+
+,
+ then 
+\begin_inset Formula $\theta\left(\boldsymbol{w}^{T}\boldsymbol{x}_{i}\right)<0.5,$
+\end_inset
+
+which yields:
+\begin_inset Formula 
+\[
+m_{i}=1-\theta\left(\boldsymbol{w}^{T}\boldsymbol{x}_{i}\right)>0.5.
+\]
+
+\end_inset
+
+If the model predicts 
+\begin_inset Formula $\hat{y}_{i}=1$
+\end_inset
+
+,
+ when 
+\begin_inset Formula $y_{i}=0$
+\end_inset
+
+,
+ then 
+\begin_inset Formula $\theta\left(\boldsymbol{w}^{T}\boldsymbol{x}_{i}\right)>0.5$
+\end_inset
+
+,
+ which yields:
+\begin_inset Formula 
+\[
+m_{i}=0-\theta\left(\boldsymbol{w}^{T}\boldsymbol{x}_{i}\right)<-0.5.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Thus,
+ the gradient contribution when a sample is misclassified is:
+\begin_inset Formula 
+\[
+\lvert m^{mis}_{i}\rvert=\lvert y_{i}-\theta\left(\boldsymbol{w}^{T}\boldsymbol{x}_{i}\right)\rvert>0.5.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When the sample is correctly classified (ie.
+ 
+\begin_inset Formula $\hat{y}_{i}=y_{i})$
+\end_inset
+
+ then:
+\begin_inset Formula 
+\[
+\lvert m^{cor}_{i}\rvert=\lvert y_{i}-\theta\left(\boldsymbol{w}^{T}\boldsymbol{x}_{i}\right)\rvert<0.5,
+\]
+
+\end_inset
+
+since 
+\begin_inset Formula $\theta\left(\boldsymbol{w}^{T}\boldsymbol{x}_{i}\right)>0.5,$
+\end_inset
+
+when 
+\begin_inset Formula $y_{i}=1$
+\end_inset
+
+,
+ and 
+\begin_inset Formula $\theta\left(\boldsymbol{w}^{T}\boldsymbol{x}_{i}\right)<0.5,$
+\end_inset
+
+when 
+\begin_inset Formula $y_{i}=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+This means,
+ that the gradient contribution of a misclassified sample is always bigger than a correctly classified sample (for a given sample):
+\begin_inset Formula 
+\[
+\lvert\nabla l^{mis}_{n=i}\rvert=\lvert-\frac{1}{N}\left(m^{mis}_{i}\right)\boldsymbol{x}_{i}\rvert>\lvert\nabla l^{cor}_{n=i}\rvert=\lvert-\frac{1}{N}\left(m^{cor}_{i}\right)\boldsymbol{x}_{i}\rvert.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+For 
+\begin_inset Formula $\boldsymbol{Y\in\left\{ -1,1\right\} }$
+\end_inset
+
+
+\series default
+,
+ the gradient contribution of one observation is given by:
+\begin_inset Formula 
+\[
+\nabla l_{n=i}=-\frac{1}{N}y_{i}\boldsymbol{x}_{i}\theta\left(-y_{i}\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}_{i}\right).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I first define 
+\begin_inset Formula $m_{i}=-y_{i}\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+If the model predicts 
+\begin_inset Formula $\hat{y}_{i}=1$
+\end_inset
+
+,
+ when 
+\begin_inset Formula $y_{i}=-1$
+\end_inset
+
+,
+ then:
+\begin_inset Formula 
+\[
+\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}_{i}>0\Rightarrow m_{i}>0.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If the model predicts 
+\begin_inset Formula $\hat{y}_{i}=-1$
+\end_inset
+
+,
+ when 
+\begin_inset Formula $y_{i}=1$
+\end_inset
+
+,
+ then:
+\begin_inset Formula 
+\[
+\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}_{i}<0\Rightarrow m_{i}>0.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Thus:
+\begin_inset Formula 
+\[
+m^{mis}_{i}>0.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If the model classifies 
+\begin_inset Formula $\hat{y}_{i}=y_{i}$
+\end_inset
+
+ correctly,
+ then 
+\begin_inset Formula $m_{i}$
+\end_inset
+
+ becomes negative:
+\begin_inset Formula 
+\[
+m^{cor}_{i}<0.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since the sigmpid 
+\begin_inset Formula $\theta\left(m_{i}\right)$
+\end_inset
+
+ is increasing in 
+\begin_inset Formula $m_{i}$
+\end_inset
+
+,
+ the gradient contribution of a given misclasiffied sample will always be bigger than the correctly classified sample:
+\begin_inset Formula 
+\begin{align*}
+m^{cor}_{i} & <m^{mis}_{i}\Rightarrow\theta\left(m^{cor}_{i}\right)<\theta\left(m^{mis}_{i}\right),\\
+\Rightarrow\lvert\nabla l^{cor}_{n=i}\rvert & =\lvert-\frac{1}{N}y_{i}\boldsymbol{x}_{i}\theta\left(m^{cor}_{i}\right)\rvert<\lvert\nabla l^{mis}_{n=i}\rvert=\lvert-\frac{1}{N}y_{i}\boldsymbol{x}_{i}\theta\left(m^{cor}_{i}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Log-odds (10 points)
+\end_layout
+
+\begin_layout Standard
+To show that:
+\begin_inset Formula 
+\[
+f(\mathbf{x})=\sigma(\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}+b)=P(Y=1\mid X=\boldsymbol{x}),
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\sigma\left(\cdot\right)$
+\end_inset
+
+is the logistic function 
+\begin_inset Formula $\sigma\left(\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}+b\right)=\frac{1}{1+e^{-\left(\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}+b\right)}}$
+\end_inset
+
+,
+ i start by rewriting eq.
+ (4) from the assignment:
+\begin_inset Formula 
+\begin{align*}
+\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}+b & =\log\left(\frac{P(Y=1\mid X=x)}{P(Y=0\mid X=x)}\right),\\
+ & =-\log\left(\frac{P\left(Y=0\mid X=x\right)}{P\left(Y=1\mid X=x\right)}\right),\\
+\Leftrightarrow-\left(\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}+b\right) & =\log\left(\frac{P\left(Y=0\mid X=x\right)}{P\left(Y=1\mid X=x\right)}\right),\\
+\Leftrightarrow e^{-\left(\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}+b\right)} & =\frac{P\left(Y=0\mid X=x\right)}{P\left(Y=1\mid X=x\right)},\\
+ & =\frac{1-P\left(Y=1\mid X=x\right)}{P\left(Y=1\mid X=x\right)},\\
+ & =\frac{1}{P\left(Y=1\mid X=x\right)}-1,\\
+\Leftrightarrow1+e^{-\left(\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}+b\right)} & =\frac{1}{P\left(Y=1\mid X=x\right)},\\
+\Leftrightarrow P\left(Y=1\mid X=x\right) & =\frac{1}{1+e^{-\left(\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}+b\right)}}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Comparing the expression above to eq.
+ (3) from the assignment,
+ it is obvious that 
+\begin_inset Formula $\sigma\left(\cdot\right)$
+\end_inset
+
+ is the logistic function 
+\begin_inset Formula $\sigma\left(z\right)=\frac{1}{1+e^{-z}}$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+f(\mathbf{x})=\sigma(\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}+b)=P(Y=1\mid X=\boldsymbol{x})=\frac{1}{1+e^{-\left(\boldsymbol{w}^{\mathrm{T}}\boldsymbol{x}+b\right)}}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Sleep Well (34 points)
+\end_layout
+
+\begin_layout Standard
+Note to self:
+ description of software used should include parameters values etc.
+\end_layout
+
+\begin_layout Subsection
+Data understanding and preprocessing (4 points)
+\end_layout
+
+\begin_layout Standard
+I calculated the frequency of classes in the training data using python (numpy and pandas).
+ The results are shown in the table below:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="3">
+<features booktabs="true" tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="right" valignment="top">
+<column alignment="right" valignment="top">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Class
+\series default
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Count
+\series default
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Frequency
+\series default
+ 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+17.566 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.521 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.221 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.096 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8.523 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.253 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.583 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.047 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.831 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.084 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Total:
+
+\series default
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+33.724
+\series default
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+1.000
+\series default
+ 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Classification (30 points)
+\end_layout
+
+\begin_layout Subsubsection
+Logistic regression
+\end_layout
+
+\begin_layout Standard
+I used python to apply the multinomial logistic regression (numpy and scikit-learn).
+ I used stochastic gradient descent (SGD) to fit the model,
+ with a tolerance of 
+\begin_inset Formula $1\cdot10^{-8}$
+\end_inset
+
+.
+ I did not use any regularization as using two-norm regularization didn't improve the 0-1 loss meaningfully for any values of 
+\begin_inset Formula $C$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Using logistic regression with no regularization,
+ i got a training 0-1 loss of 
+\begin_inset Formula $L_{train}(h)=\frac{1}{n}\sum^{n}_{i=1}\boldsymbol{1}[h(\boldsymbol{x}_{train,i})\neq y_{train,i}]\approx0.1495,$
+\end_inset
+
+and a test 0-1 loss of 
+\begin_inset Formula $L_{test}(h)\approx0.0956$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Random forest
+\end_layout
+
+\begin_layout Standard
+I used python to apply the random forests clasiffier algorithm (numpy and scikit-learn).
+ I used Gini index as the impurity measure and chose the maximum variables considered per split:
+ 
+\begin_inset Formula $m=\sqrt{D}=\sqrt{16}=4.$
+\end_inset
+
+ I chose the minimum required samples a node must have to split further as 5.
+\end_layout
+
+\begin_layout Standard
+The OOB error,
+ training and test loss (0–1 loss) for each of the three random forests are shown in the table below:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+begin{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+\backslash
+begin{tabular}{lrrr}
+\end_layout
+
+\begin_layout Plain Layout
+
+\backslash
+toprule
+\end_layout
+
+\begin_layout Plain Layout
+
+\backslash
+textbf{Number of trees (B)} & 
+\backslash
+textbf{OOB error} & 
+\backslash
+textbf{Train loss (0--1)} & 
+\backslash
+textbf{Test loss (0--1)} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\backslash
+midrule
+\end_layout
+
+\begin_layout Plain Layout
+50 & 0.8465 & 0.0080 & 0.1131 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+100 & 0.8508 & 0.0063 & 0.1122 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+200 & 0.8534 & 0.0050 & 0.1098 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\backslash
+bottomrule
+\end_layout
+
+\begin_layout Plain Layout
+
+\backslash
+end{tabular}
+\end_layout
+
+\begin_layout Plain Layout
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The random forest with 200 trees performed slightly better compared to 50 and 100 trees (less than 1 pct.
+ point decrease on 0–1 test loss).
+ Compared to the increase in required compute,
+ this small performance gain may not be worth the extra compute depending on what the model is needed for.
+\end_layout
+
+\begin_layout Subsubsection
+Nearest neighbor
+\end_layout
+
+\begin_layout Standard
+I used python to apply 
+\begin_inset Formula $K$
+\end_inset
+
+-Nearest neighbor (numpy and scikit-learn).
+ I used the euclidean norm as the distance metric with no regularization.
+\end_layout
+
+\begin_layout Standard
+I used cross-validation with five validation sets to determine the number of neighbors 
+\begin_inset Formula $(K)$
+\end_inset
+
+.
+ I used the mean 0-1 loss of the validation sets for each 
+\begin_inset Formula $K\in\{1,2,\cdots,100\}$
+\end_inset
+
+ as measure of the predictive performance of 
+\begin_inset Formula $K$
+\end_inset
+
+.
+ Using the method i found,
+ that 
+\begin_inset Formula $K=60$
+\end_inset
+
+ gave the minimum mean 0-1 loss with 
+\begin_inset Formula $L_{validation}\approx0.1494$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Using 
+\begin_inset Formula $K=60$
+\end_inset
+
+ i calculated the training 0-1 loss:
+ 
+\begin_inset Formula $L_{train}\approx0.1462$
+\end_inset
+
+,
+ and the test 0-1 loss:
+ 
+\begin_inset Formula $L_{test}\approx0.0980$
+\end_inset
+
+.
+ Surprisingly the test 0-1 loss was the lowest of all the 0-1 losses by quiet a lot.
+\end_layout
+
+\begin_layout Standard
+The figure below shows the mean 0-1 loss of the validations sets as a function of 
+\begin_inset Formula $K$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename output/K-NN_Validation_Errors.png
+	lyxscale 30
+	width 12cm
+	clip
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Looking at the figure,
+ it seems the 0-1 loss is almost constant for 
+\begin_inset Formula $K\geq25$
+\end_inset
+
+,
+ with a 0-1 loss around 0.15.
+ I would likely have gotten close to the same performance using 
+\begin_inset Formula $K=25$
+\end_inset
+
+ rather than 
+\begin_inset Formula $K=60$
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_body
+\end_document

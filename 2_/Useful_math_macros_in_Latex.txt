@@ -1,0 +1,138 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{xifthen}
+\usepackage{xparse}
+\usepackage{dsfont}
+\usepackage{xcolor}
+
+% Left-right bracket
+\newcommand{\lr}[1]{\left (#1\right)}
+
+% Left-right square bracket
+\newcommand{\lrs}[1]{\left [#1 \right]}
+
+% Left-right curly bracket
+\newcommand{\lrc}[1]{\left \{#1\right\}}
+
+% Left-right absolute value
+\newcommand{\lra}[1]{\left |#1\right|}
+
+% Left-right upper value
+\newcommand{\lru}[1]{\left \lceil#1\right\rceil}
+
+% Scalar product
+\newcommand{\vp}[2]{\left \langle #1 , #2 \right \rangle}
+
+% The real numbers
+\newcommand{\R}{\mathbb R}
+
+% The natural numbers
+\newcommand{\N}{\mathbb N}
+
+% Expectation symbol with an optional argument
+\NewDocumentCommand{\E}{o}{\mathbb E\IfValueT{#1}{\lrs{#1}}}
+
+% Indicator function with an optional argument
+\NewDocumentCommand{\1}{o}{\mathds 1{\IfValueT{#1}{\lr{#1}}}}
+
+% Probability function
+\let\P\undefined
+\NewDocumentCommand{\P}{o}{\mathbb P{\IfValueT{#1}{\lr{#1}}}}
+
+% A hypothesis space
+\newcommand{\HH}{\mathcal H}
+
+% A sample space
+\newcommand{\XX}{\mathcal{X}}
+
+% A label space
+\newcommand{\YY}{\mathcal{Y}}
+
+% A nicer emptyset symbol
+\let\emptyset\varnothing
+
+% Sign operator
+\DeclareMathOperator{\sign}{sign}
+\newcommand{\sgn}[1]{\sign\lr{#1}}
+
+% KL operator
+\DeclareMathOperator{\KL}{KL}
+
+% kl operator
+\DeclareMathOperator{\kl}{kl}
+
+% The entropy
+\let\H\relax
+\DeclareMathOperator{\H}{H}
+
+% Majority vote
+\DeclareMathOperator{\MV}{MV}
+
+% Variance
+\DeclareMathOperator{\V}{Var}
+\NewDocumentCommand{\Var}{o}{\V\IfValueT{#1}{\lrs{#1}}}
+
+% VC
+\DeclareMathOperator{\VC}{VC}
+
+% VC-dimension
+\newcommand{\dVC}{d_{\VC}}
+
+% FAT ...
+\DeclareMathOperator{\FAT}{FAT}
+\newcommand{\dfat}{d_{\FAT}}
+\newcommand{\lfat}{\ell_{\FAT}}
+\newcommand{\Lfat}{L_{\FAT}}
+\newcommand{\hatLfat}{\hat L_{\FAT}}
+
+% Distance
+\DeclareMathOperator{\dist}{dist}
+
+\title{Some Useful Math Macros in LaTeX}
+
+\author{Yevgeny Seldin}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+Please, check LaTeX source of this document to see how to define some useful LaTeX macros, and how to use them.
+
+Examples of use:
+
+\[
+\E
+\]
+% Note that we use square brackets for macros defined with \NewDocumentCommand
+\[
+\E[X]
+\]
+\[
+\P[X=x]
+\]
+\[
+x \in \R
+\]
+\[
+\1[X=x]
+\]
+
+% but curly brackets for macros defined with \newcommand
+\[
+\lr{X=x}
+\]
+\[
+\lrs{X=x}
+\]
+\[
+\lrc{x_1,x_2,\dots}
+\]
+\[
+\sgn{x}
+\]
+\end{document}

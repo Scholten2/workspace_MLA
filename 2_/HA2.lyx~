@@ -1,0 +1,1755 @@
+#LyX 2.5 created this file. For more info see https://www.lyx.org/
+\lyxformat 643
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{a4wide}
+\usepackage{amsfonts}
+\usepackage{lipsum}
+\usepackage{xcolor}
+\usepackage{amsthm}
+\usepackage{xifthen}
+\usepackage{xparse}
+\usepackage{dsfont}
+
+
+
+
+
+\usepackage{listings}% For presenting code 
+
+% Definition of a style for code, matter of taste
+\lstdefinestyle{mystyle}{
+  language=Python,
+  basicstyle=\ttfamily\footnotesize,
+  backgroundcolor=\color[HTML]{F7F7F7},
+  rulecolor=\color[HTML]{EEEEEE},
+  identifierstyle=\color[HTML]{24292E},
+  emphstyle=\color[HTML]{005CC5},
+  keywordstyle=\color[HTML]{D73A49},
+  commentstyle=\color[HTML]{6A737D},
+  stringstyle=\color[HTML]{032F62},
+  emph={@property,self,range,True,False},
+  morekeywords={super,with,as,lambda},
+  literate=%
+    {+}{{{\color[HTML]{D73A49}+}}}1
+    {-}{{{\color[HTML]{D73A49}-}}}1
+    {*}{{{\color[HTML]{D73A49}*}}}1
+    {/}{{{\color[HTML]{D73A49}/}}}1
+    {=}{{{\color[HTML]{D73A49}=}}}1
+    {/=}{{{\color[HTML]{D73A49}=}}}1,
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  keepspaces=true,
+  numbers=none,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  tabsize=4,
+  frame=single,
+}
+\lstset{style=mystyle}
+\end_preamble
+\use_default_options false
+\begin_modules
+theorems-ams
+\end_modules
+\maintain_unincluded_children no
+\language english
+\language_package none
+\inputencoding utf8
+\fontencoding default
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_roman_osf false
+\font_sans_osf false
+\font_typewriter_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref true
+\pdf_bookmarks false
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle false
+\papersize a4
+\use_geometry false
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 0
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 0
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\crossref_package prettyref
+\use_formatted_ref 0
+\use_minted 0
+\use_lineno 0
+\backgroundcolor none
+\fontcolor none
+\notefontcolor lightgray
+\boxbgcolor red
+\table_border_color default
+\table_odd_row_color default
+\table_even_row_color default
+\table_alt_row_colors_start 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tablestyle default
+\tracking_changes false
+\output_changes false
+\change_bars false
+\postpone_fragile_content true
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\docbook_table_output 0
+\docbook_mathml_prefix 1
+\docbook_mathml_version 0
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Machine Learning A (2026)
+\begin_inset Newline newline
+\end_inset
+
+ Home Assignment 2
+\end_layout
+
+\begin_layout Author
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+color{red}
+\end_layout
+
+\end_inset
+
+Hannibal von Scholten - GMJ118
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+% Please leave the table of contents as is,
+ for the ease of navigation for TAs
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Preprocessing (35 points)
+\end_layout
+
+\begin_layout Subsection
+Importance of Preprocessing (8 points)
+\end_layout
+
+\begin_layout Standard
+Using 
+\begin_inset Formula $K-NN$
+\end_inset
+
+ i would define an input space with two variables
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Formula $\mathcal{X}=\{(Age\_in\_years,Income\_in\_thousands\_of\_US)\}$
+\end_inset
+
+ and an output space of weather the person defaults or not 
+\begin_inset Formula $\mathcal{Y}=\{yes,no\}$
+\end_inset
+
+.
+ From the table below we can derive the training data:
+ 
+\begin_inset Formula $S=\{(47,35,no),(22,40,yes)\}.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Person 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Age in years 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Income in thousands of USD 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+defaults
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+47 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+35 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+no
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+B 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+22 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+40 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+C 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+21 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+36 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We want to predict weather person C defaults or not,
+ to determine if person C should get a credit card.
+ Using the euclidean norm,
+ we can determine which person,
+ person C is mostly identical to:
+\end_layout
+
+\begin_layout Standard
+Distance to person A:
+ 
+\begin_inset Formula 
+\[
+dist(A,C)=\sqrt{(47-21)^{2}+(35000-36000)^{2}}\approx1000.34.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Distance to person B:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+dist(B,C)=\sqrt{(22-21)^{2}+(40000-36000)^{2}}\approx4000.00.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Thus,
+ when measured in thousands of USD,
+ person C looks more like person A (that did not default) than person B (that did default).
+ According to this,
+ the bank should therefore give person C a credit card.
+\end_layout
+
+\begin_layout Standard
+Now let's try to calculate the euclidean norm again.
+ This time assuming the income is given in USD:
+\end_layout
+
+\begin_layout Standard
+Distance to person A:
+ 
+\begin_inset Formula 
+\[
+dist(A,C)=\sqrt{(47-21)^{2}+(35-36)^{2}}\approx26.02.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Distance to person B:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+dist(B,C)=\sqrt{(22-21)^{2}+(40-36)^{2}}\approx4.12.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This time person C looks more like person B than person A:
+ The bank should not give person C a credit card.
+ This is because the numerical difference between their incomes are significantly lower,
+ when we measure ind USD instead of thousands of USD.
+\end_layout
+
+\begin_layout Subsection
+Input Centering (9 points)
+\end_layout
+
+\begin_layout Subsubsection
+(a)
+\end_layout
+
+\begin_layout Standard
+Given the input matrix:
+ 
+\begin_inset Formula 
+\[
+\boldsymbol{X}=\left[\begin{array}{c}
+\boldsymbol{x}^{T}_{1}\\
+\boldsymbol{x}^{T}_{2}\\
+\vdots\\
+\boldsymbol{x}^{T}_{N}
+\end{array}\right],
+\]
+
+\end_inset
+
+and 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ defined as:
+ 
+\begin_inset Formula 
+\[
+\gamma=\boldsymbol{I}-\frac{1}{N}\boldsymbol{11}^{T},
+\]
+
+\end_inset
+
+i want to show that:
+ 
+\begin_inset Formula 
+\[
+\boldsymbol{Z}=\gamma\boldsymbol{X},
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\boldsymbol{Z}^{T}=\left[\begin{array}{cccc}
+\boldsymbol{z}_{1} & \boldsymbol{z}_{2} & \cdots & \boldsymbol{z}_{N}\end{array}\right]$
+\end_inset
+
+,
+ where 
+\begin_inset Formula $\boldsymbol{z}_{n}=\boldsymbol{x}_{n}-\bar{\boldsymbol{x}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Firstly i rewrite 
+\begin_inset Formula $\boldsymbol{Z}$
+\end_inset
+
+,
+ so it is expressed only in terms of 
+\begin_inset Formula $\boldsymbol{X}$
+\end_inset
+
+ and 
+\begin_inset Formula $\boldsymbol{1}$
+\end_inset
+
+:
+ 
+\begin_inset Formula 
+\[
+\boldsymbol{Z}=\left[\begin{array}{c}
+\boldsymbol{x}^{T}_{1}\\
+\boldsymbol{x}^{T}_{2}\\
+\vdots\\
+\boldsymbol{x}^{T}_{N}
+\end{array}\right]-\left[\begin{array}{c}
+\bar{\boldsymbol{x}}^{T}\\
+\bar{\boldsymbol{x}}^{T}\\
+\bar{\boldsymbol{x}}^{T}\\
+\bar{\boldsymbol{x}}^{T}
+\end{array}\right],
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+=\boldsymbol{X}-\boldsymbol{1\bar{\boldsymbol{x}}}^{T},
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+=\boldsymbol{X}-\boldsymbol{1}\frac{1}{N}\boldsymbol{1}^{T}\boldsymbol{X},
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+=\boldsymbol{X}-\frac{1}{N}\boldsymbol{11}^{T}\boldsymbol{X}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This means,
+ that i need to show:
+ 
+\begin_inset Formula 
+\[
+\mathbf{Z}=\gamma\boldsymbol{X}=\boldsymbol{X}-\frac{1}{N}\boldsymbol{11}^{T}\boldsymbol{X}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Substituting in the expression for 
+\begin_inset Formula $\gamma$
+\end_inset
+
+,
+ i get:
+ 
+\begin_inset Formula 
+\[
+\boldsymbol{Z}=\left(\boldsymbol{I}-\frac{1}{N}\boldsymbol{11}^{T}\right)\boldsymbol{X}=\boldsymbol{X}-\frac{1}{N}\boldsymbol{11}^{T}\boldsymbol{X}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The expression 
+\begin_inset Formula $\boldsymbol{X}-\frac{1}{N}\boldsymbol{11}^{T}\boldsymbol{X}$
+\end_inset
+
+ factorizes to 
+\begin_inset Formula $\left(\boldsymbol{I}-\frac{1}{N}\boldsymbol{11}^{T}\right)\boldsymbol{X}$
+\end_inset
+
+,
+ meaning that the equality shown above is true.
+ Thus,
+ i have shown that:
+ 
+\begin_inset Formula 
+\[
+\boldsymbol{Z}=\gamma\boldsymbol{X}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+(b)
+\end_layout
+
+\begin_layout Standard
+To determine that 
+\begin_inset Formula $\text{rank}(\boldsymbol{Z})<N$
+\end_inset
+
+,
+ i use that the rank of the columns and the rank of the rows are equal.
+ Consider the rank of the rows in the matrix 
+\begin_inset Formula $\boldsymbol{Z}$
+\end_inset
+
+:
+ 
+\begin_inset Formula 
+\[
+\boldsymbol{Z}=\left[\begin{array}{c}
+\boldsymbol{z}^{T}_{1}\\
+\boldsymbol{z}^{T}_{2}\\
+\vdots\\
+\boldsymbol{z}^{T}_{N}
+\end{array}\right].
+\]
+
+\end_inset
+
+Since 
+\begin_inset Formula $\boldsymbol{z}_{n}$
+\end_inset
+
+is constructed as the deviations of 
+\begin_inset Formula $\boldsymbol{x}_{n}$
+\end_inset
+
+from the mean,
+ 
+\begin_inset Formula $\boldsymbol{z}_{n}=\boldsymbol{x}_{n}-\bar{\boldsymbol{x}}$
+\end_inset
+
+,
+ the 
+\begin_inset Formula $N$
+\end_inset
+
+ rows of 
+\begin_inset Formula $\boldsymbol{Z}$
+\end_inset
+
+ must be linearly dependent:
+ 
+\begin_inset Formula 
+\[
+\sum^{N}_{n=1}\left(\boldsymbol{x}_{n}-\frac{1}{N}\sum^{N}_{n=1}\boldsymbol{x}_{n}\right)=\sum^{N}_{n=1}\boldsymbol{x}_{n}-N\frac{1}{N}\sum^{N}_{n=1}\boldsymbol{x}_{n},
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+=\sum^{N}_{n=1}\boldsymbol{x}_{n}-\sum^{N}_{n=1}\boldsymbol{x}_{n},
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+=0.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since at least the 
+\begin_inset Formula $N$
+\end_inset
+
+ rows of 
+\begin_inset Formula $\boldsymbol{Z}$
+\end_inset
+
+ are linearly dependent,
+ the rank of the rows in 
+\begin_inset Formula $\boldsymbol{Z}$
+\end_inset
+
+ must be smaller than 
+\begin_inset Formula $N$
+\end_inset
+
+ (the rank is the maximum number of linearly independent rows).
+\end_layout
+
+\begin_layout Subsection
+Input Whitening (18 points)
+\end_layout
+
+\begin_layout Subsubsection
+(a)
+\end_layout
+
+\begin_layout Standard
+The variance of 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ is 1 since 
+\begin_inset Formula $\text{Var}(\hat{x}_{1})=1$
+\end_inset
+
+,
+ and 
+\begin_inset Formula $x_{1}=\hat{x}_{1}$
+\end_inset
+
+.
+ The variance of 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+ is given by:
+ 
+\begin_inset Formula 
+\[
+\text{Var}(x_{2})=\text{Var}\left(\sqrt{1-\epsilon^{2}}\hat{x}_{1}+\epsilon\hat{x}_{2}\right),
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+=\text{Var}\left(\sqrt{1-\epsilon^{2}}\hat{x}_{1}\right)+\text{Var}(\epsilon\hat{x}_{2})+2\text{Cov}\left(\sqrt{1-\epsilon^{2}}\hat{x}_{1},\epsilon\hat{x}_{2}\right).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since 
+\begin_inset Formula $\hat{x}_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\hat{x}_{2}$
+\end_inset
+
+ are independent,
+ the covariance is 0,
+ 
+\begin_inset Formula $\text{Cov}\left(\sqrt{1-\epsilon^{2}}\hat{x}_{1},\epsilon\hat{x}_{2}\right)=0$
+\end_inset
+
+.
+ Using this gives me:
+ 
+\begin_inset Formula 
+\[
+\text{Var}(x_{2})=\text{Var}\left(\sqrt{1-\epsilon^{2}}\hat{x}_{1}\right)+\text{Var}(\epsilon\hat{x}_{2}).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since 
+\begin_inset Formula $\text{Var}(bX)=b^{2}\text{Var}(X)$
+\end_inset
+
+,
+ we can rewrite the expression:
+ 
+\begin_inset Formula 
+\[
+\text{Var}(x_{2})=\left(\sqrt{1-\epsilon^{2}}\right)^{2}\text{Var}(\hat{x}_{1})+\epsilon^{2}\text{Var}(\hat{x}_{2}),
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+=(1-\epsilon^{2})\text{Var}(\hat{x}_{1})+\epsilon^{2}\text{Var}(\hat{x}_{2}).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I know that 
+\begin_inset Formula $\text{Var}(\hat{x}_{1})=\text{Var}(\hat{x}_{2})=1$
+\end_inset
+
+.
+ Using this yields the variance of 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+:
+ 
+\begin_inset Formula 
+\[
+\text{Var}(x_{2})=1-\epsilon^{2}+\epsilon^{2},
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\text{Var}(x_{2})=1.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To calculate the covariance of 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+,
+ i use the following formula:
+ 
+\begin_inset Formula 
+\[
+\text{Cov}(X,Y)=E(XY)-E(X)E(Y).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Using the formula yields:
+ 
+\begin_inset Formula 
+\[
+\text{Cov}(x_{1},x_{2})=E\left(\hat{x}_{1}\cdot\left(\sqrt{1-\epsilon^{2}}\hat{x}_{1}+\epsilon\hat{x}_{2}\right)\right)-E(\hat{x}_{1})E\left(\sqrt{1-\epsilon^{2}}\hat{x}_{1}+\epsilon\hat{x}_{2}\right).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since both 
+\begin_inset Formula $\hat{x}_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\hat{x}_{2}$
+\end_inset
+
+ have zero mean,
+ we get:
+ 
+\begin_inset Formula 
+\[
+\text{Cov}(x_{1},x_{2})=E\left(\hat{x}_{1}\cdot\left(\sqrt{1-\epsilon^{2}}\hat{x}_{1}+\epsilon\hat{x}_{2}\right)\right),
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+=E\left(\hat{x}^{2}_{1}\sqrt{1-\epsilon^{2}}+\hat{x}_{2}\hat{x}_{1}\epsilon\right),
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+=\sqrt{1-\epsilon^{2}}E(\hat{x}^{2}_{1})+\epsilon E(\hat{x}_{1}\hat{x}_{2}).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Using that 
+\begin_inset Formula $E(\hat{x}_{1})=0,$
+\end_inset
+
+
+\begin_inset Formula $E(\hat{x}^{2}_{1})$
+\end_inset
+
+ can be rewritten to 
+\begin_inset Formula $E(\hat{x}^{2}_{1})=E(\hat{x}^{2}_{1})-E(\hat{x}_{1})^{2}=\text{Var}(\hat{x}_{1})=1$
+\end_inset
+
+,
+ which yields:
+ 
+\begin_inset Formula 
+\[
+\text{Cov}(x_{1},x_{2})=\sqrt{1-\epsilon^{2}}+\epsilon E(\hat{x}_{2}\hat{x}_{1}).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since Since 
+\begin_inset Formula $\hat{x}_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\hat{x}_{2}$
+\end_inset
+
+ are independent both with zero mean,
+ 
+\begin_inset Formula $E(\hat{x}_{1}\hat{x}_{2})$
+\end_inset
+
+ can be rewritten to 
+\begin_inset Formula $E(\hat{x}_{1}\hat{x}_{2})=E(\hat{x}_{1})E(\hat{x}_{2})=0$
+\end_inset
+
+:
+ 
+\begin_inset Formula 
+\[
+\text{Cov}(x_{1},x_{2})=\sqrt{1-\epsilon^{2}}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+(b)
+\end_layout
+
+\begin_layout Standard
+To obtain 
+\begin_inset Formula $(w_{1},w_{2})$
+\end_inset
+
+ as functions of 
+\begin_inset Formula $(\hat{w}_{1},\hat{w}_{2})$
+\end_inset
+
+ i start by plugging the expression for 
+\begin_inset Formula $\hat{x}_{1}$
+\end_inset
+
+ into the expressions for 
+\begin_inset Formula $x_{2}$
+\end_inset
+
+,
+ and rewrite 
+\begin_inset Formula $\hat{x}_{2}$
+\end_inset
+
+ as a function of 
+\begin_inset Formula $(x_{1},x_{2})$
+\end_inset
+
+:
+ 
+\begin_inset Formula 
+\[
+x_{2}=\sqrt{1-\epsilon^{2}}x_{1}+\epsilon\hat{x}_{2},
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\Leftrightarrow\epsilon\hat{x}_{2}=x_{2}-\sqrt{1-\epsilon^{2}}x_{1},
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\Leftrightarrow\hat{x}_{2}=\frac{x_{2}-\sqrt{1-\epsilon^{2}}x_{1}}{\epsilon}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Next i plug the above expression for 
+\begin_inset Formula $\hat{x}_{2}$
+\end_inset
+
+ and the expression for 
+\begin_inset Formula $\hat{x}_{1}$
+\end_inset
+
+ into the function 
+\begin_inset Formula $f(\hat{\boldsymbol{x}})$
+\end_inset
+
+:
+ 
+\begin_inset Formula 
+\[
+f(\hat{\boldsymbol{x}})=\hat{w}_{1}\hat{x}_{1}+\hat{w}_{2}\hat{x}_{2},
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\Leftrightarrow f(\boldsymbol{x})=\hat{w}_{1}x_{1}+\hat{w}_{2}\frac{x_{2}-\sqrt{1-\epsilon^{2}}x_{1}}{\epsilon},
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+=\left(\hat{w}_{1}-\hat{w}_{2}\frac{\sqrt{1-\epsilon^{2}}}{\epsilon}\right)x_{1}+\hat{w}_{2}\frac{x_{2}}{\epsilon},
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+=\left(\hat{w}_{1}-\hat{w}_{2}\frac{\sqrt{1-\epsilon^{2}}}{\epsilon}\right)x_{1}+\frac{\hat{w}_{2}}{\epsilon}x_{2}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+From the expression above we can infer 
+\begin_inset Formula $w_{1}(\hat{w}_{1},\hat{w}_{2})$
+\end_inset
+
+ and 
+\begin_inset Formula $w_{2}(\hat{w}_{2})$
+\end_inset
+
+:
+ 
+\begin_inset Formula 
+\[
+w_{1}(\hat{w}_{1},\hat{w}_{2})=\hat{w}_{1}-\hat{w}_{2}\frac{\sqrt{1-\epsilon^{2}}}{\epsilon},
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+w_{2}(\hat{w}_{2})=\frac{\hat{w}_{2}}{\epsilon}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+(c)
+\end_layout
+
+\begin_layout Standard
+Consider the two-norm regularization with the restricted hypothesis space:
+ 
+\begin_inset Formula 
+\[
+\mathcal{H}_{C}=\{f(\boldsymbol{x})=w_{1}x_{1}+w_{2}x_{2}|\boldsymbol{w}\in\mathbb{R}^{2}\wedge w^{2}_{1}+w^{2}_{2}\leq C\}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To find the minimum value of 
+\begin_inset Formula $C$
+\end_inset
+
+,
+ i first plug in the expression of 
+\begin_inset Formula $w_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $w_{2}$
+\end_inset
+
+from above into the regularization constraint:
+ 
+\begin_inset Formula 
+\[
+w^{2}_{1}+w^{2}_{2}\leq C,
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\Leftrightarrow\left(\hat{w}_{1}-\hat{w}_{2}\frac{\sqrt{1-\epsilon^{2}}}{\epsilon}\right)^{2}+\left(\frac{\hat{w}_{2}}{\epsilon}\right)^{2}\leq C,
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\Leftrightarrow\hat{w}^{2}_{1}+\left(\hat{w}_{2}\frac{\sqrt{1-\epsilon^{2}}}{\epsilon}\right)^{2}-2\hat{w}_{1}\hat{w}_{2}\frac{\sqrt{1-\epsilon^{2}}}{\epsilon}+\frac{\hat{w}^{2}_{2}}{\epsilon^{2}}\leq C,
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\Leftrightarrow\hat{w}^{2}_{1}+\hat{w}^{2}_{2}\frac{1-\epsilon^{2}}{\epsilon^{2}}-2\hat{w}_{1}\hat{w}_{2}\frac{\sqrt{1-\epsilon^{2}}}{\epsilon}+\frac{\hat{w}^{2}_{2}}{\epsilon^{2}}\leq C,
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\Leftrightarrow\hat{w}^{2}_{1}+\hat{w}^{2}_{2}\frac{2-\epsilon^{2}}{\epsilon^{2}}-2\hat{w}_{1}\hat{w}_{2}\frac{\sqrt{1-\epsilon^{2}}}{\epsilon}\leq C.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The target function 
+\begin_inset Formula $f(\hat{\boldsymbol{x}})$
+\end_inset
+
+ has 
+\begin_inset Formula $\hat{w}_{1}=\hat{w}_{2}=1$
+\end_inset
+
+.
+ Substituting this in yields:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+1+\frac{2-\epsilon^{2}}{\epsilon^{2}}-2\frac{\sqrt{1-\epsilon^{2}}}{\epsilon}\leq C,
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{2}{\epsilon^{2}}-2\frac{\sqrt{1-\epsilon^{2}}}{\epsilon}\leq C,
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{2}{\epsilon^{2}}\left(1-\epsilon\sqrt{1-\epsilon^{2}}\right)\leq C.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Thus we get the minimum value of 
+\begin_inset Formula $C$
+\end_inset
+
+ (the maximum amount of regularization):
+ 
+\begin_inset Formula 
+\[
+C=\frac{2}{\epsilon^{2}}\left(1-\epsilon\sqrt{1-\epsilon^{2}}\right).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+(d)
+\end_layout
+
+\begin_layout Standard
+when the correlation increases (
+\begin_inset Formula $\epsilon\rightarrow0$
+\end_inset
+
+),
+ the first part of the expression increases infinitely 
+\begin_inset Formula $\left(\frac{2}{\epsilon^{2}}\rightarrow\infty\right)$
+\end_inset
+
+,
+ and the second part converges ton 1 
+\begin_inset Formula $\left(1-\epsilon\sqrt{1-\epsilon^{2}}\rightarrow1,\ \text{as}\ \epsilon\sqrt{1-\epsilon^{2}}\rightarrow0\right)$
+\end_inset
+
+.
+ This means that the minimum value of 
+\begin_inset Formula $C$
+\end_inset
+
+ increases 
+\begin_inset Formula $(C\rightarrow\infty)$
+\end_inset
+
+ as the correlation increases 
+\begin_inset Formula $(\epsilon\rightarrow0)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Hoeffding's Bound (15 points)
+\end_layout
+
+\begin_layout Standard
+To calculate the probability that 
+\begin_inset Formula $S_{n}>22$
+\end_inset
+
+ with 
+\begin_inset Formula $n=100$
+\end_inset
+
+,
+ i use the Hoffdings' inequality:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathbb{P}\left(S_{n}-E[S_{n}]\geq\varepsilon\right)\leq\exp\left(-\frac{2\varepsilon{}^{2}}{\sum^{n}_{i=1}(b_{i}-a_{i})^{2}}\right).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $X_{i}$
+\end_inset
+
+ takes the values 
+\begin_inset Formula $X_{i}\in\{-2,0.8,1\}$
+\end_inset
+
+.
+ The lower bound is 
+\begin_inset Formula $a_{i}=-2$
+\end_inset
+
+,
+ and the upper bound is 
+\begin_inset Formula $b_{i}=1$
+\end_inset
+
+.
+ The expected value 
+\begin_inset Formula $E[S_{100}]$
+\end_inset
+
+ is given by:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E[S_{100}]=100E[X_{i}]=100\cdot1/3(-2+0.8+1)=-100\frac{0.2}{3}=-\frac{20}{3}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This yields 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+:
+ 
+\begin_inset Formula 
+\[
+\varepsilon=22-E[S_{100}]=22-\left(-\frac{20}{3}\right)=\frac{86}{3}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I can now calculate the probability that 
+\begin_inset Formula $S_{n}>22$
+\end_inset
+
+ using the inequality:
+ 
+\begin_inset Formula 
+\[
+\mathbb{P}(S_{100}>22)\leq\mathbb{P}\left(S_{100}-E[S_{100}]\geq\frac{86}{3}\right)\leq\exp\left(-\frac{2\cdot\left(\frac{86}{3}\right){}^{2}}{100\left(1-(-2)\right)^{2}}\right),
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\Leftrightarrow\mathbb{P}(S>22)\lesssim\exp(-1.8262)\approx0.1610.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Thus,
+ the probability that 
+\begin_inset Formula $S_{n}>22$
+\end_inset
+
+ is at most 
+\begin_inset Formula $\approx16.1\%$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Illustration of Markov's,
+ Chebyshev's,
+ and Hoeffding's Inequalities (25 points)
+\end_layout
+
+\begin_layout Paragraph
+3.a
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+protect
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+Python code used for generating data:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+# Seed for random number generator
+\end_layout
+
+\begin_layout Plain Layout
+rng = np.random.default_rng(seed=999)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+# Mean,
+ number of random variables and number of experiments
+\end_layout
+
+\begin_layout Plain Layout
+mean = 0.35             
+\end_layout
+
+\begin_layout Plain Layout
+n = 20
+\end_layout
+
+\begin_layout Plain Layout
+num_exp = 1_000_000
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+# Generate data (1.000.000 rows and 20 columns)
+\end_layout
+
+\begin_layout Plain Layout
+data_raw = rng.binomial(n=1,
+ p=mean,
+ size=(num_exp,n))
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+1.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename output/emp_frq.png
+	lyxscale 30
+	width 12cm
+	clip
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Paragraph
+2.
+\end_layout
+
+\begin_layout Standard
+The chosen of 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ is sufficient,
+ since 
+\begin_inset Formula $X_{i}$
+\end_inset
+
+ is binomial distributed.
+ This means that the mean of 20 samples can only take values of 
+\begin_inset Formula $\frac{1}{20}\sum^{20}_{i=1}X_{i}\in[0,0.05,0.1,0.15,0.2,025,\cdots,0.95,1].$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+3.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename output/mark_bound.png
+	lyxscale 30
+	width 12cm
+	clip
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Paragraph
+4.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename output/heby_bound.png
+	lyxscale 30
+	width 12cm
+	clip
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+5.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename output/hoef_bound.png
+	lyxscale 30
+	width 12cm
+	clip
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Paragraph
+6.
+\end_layout
+
+\begin_layout Standard
+Comparing the four plots above,
+ i can infer,
+ that Markov's bound is worst at predicting the true probability 
+\begin_inset Formula $\mathbb{P}\left(\frac{1}{20}\sum^{20}_{i=1}X_{i}\geq\alpha\right)$
+\end_inset
+
+,
+ while Hebyshev's bound is closest to the true probability.
+ The difference in the accuracy of predictions are a result of the progressively tighter assumptions required.
+ Markov's bound only requires that 
+\begin_inset Formula $0\leq E[X]<\infty$
+\end_inset
+
+,
+ Chebyshev's bound uses 
+\begin_inset Formula $Var(X)$
+\end_inset
+
+,
+ while Hoeffding's bound requires that 
+\begin_inset Formula $(X_{1},X_{2},\cdots,X_{n})$
+\end_inset
+
+ are iid.,
+ and that 
+\begin_inset Formula $X_{i}\in[a_{i},b_{i}]$
+\end_inset
+
+ are known.
+\end_layout
+
+\begin_layout Paragraph
+7.
+\end_layout
+
+\begin_layout Standard
+To calculate the exact probability is the formula for Bernoulli variables:
+ 
+\begin_inset Formula 
+\[
+P\left(\frac{1}{20}\sum^{20}_{i=1}X_{i}\geq\alpha\right)=\sum^{20}_{x=20\alpha}\left(\begin{array}{c}
+20\\
+x
+\end{array}\right)(E[X_{i}])^{x}(1-E[X_{i}])^{20-x},
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\left(\begin{array}{c}
+20\\
+x
+\end{array}\right)=\frac{20^{x}}{x!}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Using the formula gives the probability 
+\begin_inset Formula $P\left(\frac{1}{20}\sum^{20}_{i=1}X_{i}\geq0.95\right)$
+\end_inset
+
+:
+ 
+\begin_inset Formula 
+\[
+P\left(\frac{1}{20}\sum^{20}_{i=1}X_{i}\geq0.95\right)=\sum^{20}_{x=19}\left(\begin{array}{c}
+20\\
+x
+\end{array}\right)(0.35)^{x}(1-0.35)^{20-x},
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+=20(0.35)^{19}(0.65)^{1}+(0.35)^{20}\approx0.00000198\%,
+\]
+
+\end_inset
+
+and the probability 
+\begin_inset Formula $P\left(\frac{1}{20}\sum^{20}_{i=1}X_{i}\geq1\right)$
+\end_inset
+
+:
+ 
+\begin_inset Formula 
+\[
+P\left(\frac{1}{20}\sum^{20}_{i=1}X_{i}\geq0.20\right)=\sum^{20}_{x=20}\left(\begin{array}{c}
+20\\
+20
+\end{array}\right)(0.35)^{x}(1-0.35)^{20-x},
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+=(0.35)^{20}\approx0.0000000761\%.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
